@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+Spring:
+  application:
+    name: shop-product
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  127.0.0.1:8848
+    config:
+      namespace:  1f57c567-9c86-4d17-9c83-0042e0bdcd49
+
+  datasource:
+    url:  jdbc:mysql://127.0.0.1:3306/mybatistudymall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect:  org.hibernate.dialect.MySQL5Dialect
+      show-sql: true
+      open-in-view: false
+
+
