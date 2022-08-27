@@ -26,4 +26,7 @@ Spring:
       show-sql: true
       open-in-view: false
 
-
+#日志debug级别，dao层可以打印出sql语句
+logging:
+  level:
+    com.example.shopproduct:  debug
