@@ -63,9 +63,11 @@ public class OrderController {
 
         log.info(">>从nacos中获取到的微服务地址为："+url);
         System.err.println("http://"+url+"/product/"+id);
+        //System.err.println("http://"+"shop-product"+"/product/"+id);
 
         //通过restTemplate调用商品微服务
         Product product=restTemplate.getForObject("http://"+url+"/product/"+id,Product.class);
+        //Product product=restTemplate.getForObject("http://"+"shop-product"+"/product/"+id,Product.class);
 
         return product;
     }

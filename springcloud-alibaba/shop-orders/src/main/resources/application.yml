@@ -14,21 +14,22 @@ Spring:
       nacos:
         discovery:
           server-addr:  127.0.0.1:8848
+          ip: 127.0.0.1
 
-      sentinel:
-        transport:
-          port: 9999 #跟控制台交流的端口，随意指定一个未使用的端口即可
-          dashboard:  localhost:8099 #指定控制台服务的地址
-
-        #禁止收敛URL的入口context
-        web-context-unify:  false
+#      sentinel:
+#        transport:
+#          port: 9999 #跟控制台交流的端口，随意指定一个未使用的端口即可
+#          dashboard:  localhost:8099 #指定控制台服务的地址
+#
+#        #禁止收敛URL的入口context
+#        web-context-unify:  false
 
   ##Ribbon均衡负载
-  service-product: shop-product
-
-  ribbon:
-
-  NFLoadBalancerRuleClassName:  com.netflix.loadbalancer.RandomRule
+#  service-product: shop-product
+#
+#  ribbon:
+#
+#  NFLoadBalancerRuleClassName:  com.netflix.loadbalancer.RandomRule
 
   datasource:
     url:  jdbc:mysql://127.0.0.1:3306/mybatistudymall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai

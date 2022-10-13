@@ -23,7 +23,10 @@ public class OrderApplication {
 
 
     //Ribbon均衡负载
-    @LoadBalanced
+    //经过多次分析发现，如果使用nacos自定义的均衡负载的话，就不要用ribbion的均衡负载和@LoadBalanced。
+    // 增加@LoadBalanced，就不能使用127.0.0.1,
+    // 只能使用应用名(等于上图的fqyd-member不区分大小写),
+    //@LoadBalanced
     @Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
