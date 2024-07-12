@@ -23,8 +23,8 @@ public class OrderApplication {
 
 
     //Ribbon均衡负载
-    @LoadBalanced
     @Bean
+    @LoadBalanced
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl3 {
 
     @SentinelResource("message")
-
     public void message(){
         System.out.println("message");
     }

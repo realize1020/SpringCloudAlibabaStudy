@@ -46,6 +46,7 @@ public class OrderController {
 
         //通过restTemplate调用商品微服务
         Product product=restTemplate.getForObject("http://localhost:8081/product/"+id,Product.class);
+        System.out.println(product.toString());
         return product;
     }
 
@@ -123,12 +124,16 @@ public class OrderController {
 
 
     //使用nacos调用商品服务，使用Feign，（Feign中自动集成了Ribbon均衡负载组件）
-    @GetMapping("/order5/prod/{id}")
+    @GetMapping(value = "/order5/prod/{id}",produces = "application/json;charset=utf-8")
     public Product order5(@PathVariable("id") Integer id){
         System.err.println(">>客户下单，这时候要调用商品微服务查询商品信息");
         
         //通过feign调用商品微服务
         Product product = productService.findByPid(id);
+        if(product.getId()==-1){
+            log.error("下单失败！");
+            product.setName("下单失败");
+        }
 
         return product;
     }
