@@ -4,6 +4,12 @@ server:
 Spring:
   application:
     name: shop-product
+  zipkin:
+    base-url: http://127.0.0.1:9411/  #zipkin server的请求地址
+    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+  sleuth:
+    sampler:
+      probability: 1.0  #采样的百分比
 
   cloud:
     nacos:
@@ -12,8 +18,8 @@ Spring:
         username: nacos
         password: nacos
 
-    config:
-      namespace:  1f57c567-9c86-4d17-9c83-0042e0bdcd49
+#    config:
+#      namespace:  1f57c567-9c86-4d17-9c83-0042e0bdcd49
 
   datasource:
     url:  jdbc:mysql://127.0.0.1:3306/mybatistudymall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai

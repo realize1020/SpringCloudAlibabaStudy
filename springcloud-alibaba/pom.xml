@@ -8,7 +8,8 @@
         <module>shop-user</module>
         <module>shop-product</module>
 		<module>shop-orders</module>
-	</modules>
+        <module>shop-gateway</module>
+    </modules>
     <!--<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -77,6 +78,18 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--sleuth依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <!--zipkin依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+    </dependencies>
 	<!--<dependencies>
 	<dependency>
 		<groupId>org.springframework.boot</groupId>

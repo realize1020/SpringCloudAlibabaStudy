@@ -1,15 +1,15 @@
 package com.example.shopproduct.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.common.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 /*
  *@Author wang
  *@Date 2022/7/11 22 :56
  *@description
  */
-@Repository
-public interface ProductDao extends JpaRepository<Product,Integer>{
+@Mapper
+public interface ProductDao extends BaseMapper<Product> {
 
 }

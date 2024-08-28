@@ -1,9 +1,13 @@
 package com.example.shopproduct.service.impl;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.entity.Product;
 import com.example.shopproduct.dao.ProductDao;
 import com.example.shopproduct.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /*
  *@Author wang
@@ -12,12 +16,12 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl extends ServiceImpl<ProductDao,Product> implements ProductService{
 
-    @Autowired
+    @Resource
     private ProductDao productDao;
 
     public Product findById(Integer id){
-        return productDao.findById(id).get();
+        return productDao.selectById(id);
     }
 }

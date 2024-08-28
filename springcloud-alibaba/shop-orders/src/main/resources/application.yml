@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8093
   tomcat:
     threads:
       max: 10 #tomcat的最大并发数修改为10，默认是200
@@ -7,9 +7,19 @@ server:
 Spring:
 #  profiles:
 #    active: dev
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   application:
     name: shop-order
+  zipkin:
+    base-url: http://127.0.0.1:9411/  #zipkin server的请求地址
+    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+  sleuth:
+    sampler:
+      probability: 1.0  #采样的百分比
   cloud:
       nacos:
         discovery:
@@ -50,5 +60,11 @@ Spring:
 feign:
   sentinel:
     enabled: true
+
+#rocketmq
+rocketmq:
+  name-server: 127.0.0.1:9876   #rocketMQ服务的地址
+  producer:
+    group: shop-order # 生产者组
 
 

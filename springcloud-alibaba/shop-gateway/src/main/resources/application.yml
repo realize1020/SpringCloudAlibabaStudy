@@ -1,0 +1,81 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  zipkin:
+    base-url: http://127.0.0.1:9411/  #zipkin server的请求地址
+    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+  sleuth:
+    sampler:
+      probability: 1.0  #采样的百分比
+##1、普通方式写死了转发得路径
+# cloud:
+#    gateway:
+#      discovery:
+#      routes:
+#        - id: product_route
+#          uri:  http://localhost:8081
+#          order:  1
+#          predicates:
+#            - Path=/shop-product/**
+#          filters:
+#            - StripPrefix=1
+
+
+##2、加入nacos，动态去注册中心获取服务地址
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true # 让gateway可以发现nacos中的微服务
+#      routes:
+#        - id: product_route
+#          uri:  lb://shop-product # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+#          predicates:
+#            - Path=/shop-product/**
+#          filters:
+#            - StripPrefix=1
+
+##3、简写版
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+
+##内置断言的使用
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 让gateway可以发现nacos中的微服务
+      routes:
+        - id: product_route
+          uri:  lb://shop-product # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
+
+
+    sentinel:
+      transport:
+        port: 19999 #跟控制台交流的端口，随意指定一个未使用的端口即可
+        dashboard:  localhost:8080 #指定控制台服务的地址
+        clientIP: 169.254.31.20
+
+      #禁止收敛URL的入口context
+      web-context-unify:  false

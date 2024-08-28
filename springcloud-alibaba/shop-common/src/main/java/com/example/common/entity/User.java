@@ -1,11 +1,8 @@
 package com.example.common.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /*
  *@Author wang
@@ -14,12 +11,10 @@ import javax.persistence.Id;
  */
 
 //使用mall的数据库来测试
-@Entity(name="ums_member")
+@TableName("ums_member")
 @Data
 
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String username;
